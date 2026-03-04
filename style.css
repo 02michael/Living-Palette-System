@@ -1,0 +1,149 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --c1: #000;
+  --c2: #111;
+  --c3: #222;
+  --c4: #333;
+  --c5: #444;
+  --c6: #555;
+}
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  background: var(--c1);
+  color: var(--c5);
+  min-height: 100vh;
+  overflow: hidden;
+  transition: background 0.8s ease;
+}
+
+/* Palette Name */
+h1 {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 10;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+}
+
+/* Swatches */
+.swatches {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.swatch {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  transition: background 0.8s ease;
+}
+
+/* Controls */
+.controls {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+}
+
+button {
+  font-family: inherit;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--c6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button.primary {
+  background: var(--c4);
+  color: var(--c1);
+  border: none;
+}
+
+button.locked {
+  background: var(--c2);
+  color: var(--c6);
+}
+
+/* Kaleidoscope Background */
+.kaleidoscope {
+  position: fixed;
+  inset: 0;
+  background: conic-gradient(
+    from 0deg,
+    var(--c1),
+    var(--c2),
+    var(--c3),
+    var(--c4),
+    var(--c5),
+    var(--c6),
+    var(--c1)
+  );
+  animation: spin 25s linear infinite;
+  filter: blur(80px) saturate(130%);
+  z-index: 0;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mobile Fine-Tuning */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1rem;
+    top: 50px;
+  }
+
+  .swatch {
+    width: 36px;
+    height: 36px;
+  }
+
+  button {
+    font-size: 0.85rem;
+    padding: 6px 14px;
+  }
+
+  .kaleidoscope {
+    filter: blur(60px) saturate(120%);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .kaleidoscope {
+    animation: none;
+  }
+}
